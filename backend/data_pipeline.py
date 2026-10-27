@@ -6,21 +6,23 @@ import os
 
 def run_pipeline():
     BASE_URL1 = 'https://data.elexon.co.uk/bmrs/api/v1/datasets/FUELHH/stream'
-    params1 =  {
-        "dataset": "FUELINST",
+    params1 = {
         "publishDateTimeFrom": "2026-01-01T00:00:00Z",
         "publishDateTimeTo": "2026-01-31T23:59:59Z",
-        "fuelType": "WIND"
-    
-      }
+        "fuelType": "WIND",
+        }
     columns1 =['startTime','generation','settlementPeriod']
 
     BASE_URL2 = 'https://data.elexon.co.uk/bmrs/api/v1/datasets/WINDFOR/stream'
+
+
     params2 = {
-        "publishDateTimeFrom": "2026-01-01T00:00:00Z",
-        "publishDateTimeTo": "2026-01-31T23:59:59Z",
-    }
+        # Include forecasts published on 31 December for 1 January delivery
+         "publishDateTimeFrom": "2025-12-31T00:00:00Z",
+           "publishDateTimeTo": "2026-01-31T23:59:59Z",
+           }
     columns2 =['publishTime','startTime','generation']
+
 
 
     # -- Step 1: Make the request with error handling --
@@ -95,7 +97,15 @@ def run_pipeline():
     actual_hourly = actual_hourly[
         actual_hourly['actual_count'] == 2
     ].drop(columns='actual_count')
+    
+    # print("Raw actual start:", df_actual["startTime"].min())
+    # print("Raw actual end:", df_actual["startTime"].max())
 
+    # print(
+    # actual_hourly[
+    #     actual_hourly["startTime"] < "2026-01-03"
+    # ].to_string(index=False)
+# )
     # 6. Compare forecasts and actuals for matching hours
     evaluation_df = pd.merge(
         actual_hourly,
@@ -103,6 +113,13 @@ def run_pipeline():
         on='startTime',
         how='inner'
     )
+    evaluation_df = evaluation_df[
+    (evaluation_df["startTime"] >= "2026-01-01T00:00:00Z")
+    & (evaluation_df["startTime"] < "2026-02-01T00:00:00Z")
+    ].copy()
+
+
+    # print(evaluation_df["startTime"].head(5))
 
     # 7. Calculate forecast errors (actual - forecast)
     evaluation_df['error_mw'] = (

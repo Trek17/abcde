@@ -13,6 +13,55 @@ import "./App.css";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
+function ForecastTooltip({ active, payload, label }) {
+  if (!active || !payload?.length) return null;
+
+  const row = payload[0].payload;
+  const actual = Number(row.actual_gen);
+  const forecast = Number(row.forecast_gen);
+  const error = actual - forecast;
+
+  const formatMW = (value) =>
+    value.toLocaleString("en-GB", { maximumFractionDigits: 1 });
+
+  return (
+    <div className="chart-tooltip">
+      <p className="tooltip-time">
+        {label} <span>GMT</span>
+      </p>
+      <p className="tooltip-cutoff">
+        Assumed decision cutoff: 06:00 GMT previous day
+      </p>
+
+      <div className="tooltip-row">
+        <span>
+          <i className="tooltip-dot actual-dot" />
+          Actual generation
+        </span>
+        <strong>{formatMW(actual)} MW</strong>
+      </div>
+
+      <div className="tooltip-row">
+        <span>
+          <i className="tooltip-dot forecast-dot" />
+          Forecast generation
+        </span>
+        <strong>{formatMW(forecast)} MW</strong>
+      </div>
+
+      <div className="tooltip-divider" />
+
+      <div className="tooltip-row tooltip-error">
+        <span>Forecast error</span>
+        <strong style={{ color: error >= 0 ? "#13764b" : "#b54747" }}>
+          {error > 0 ? "+" : ""}
+          {formatMW(error)} MW
+        </strong>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState("");
@@ -174,8 +223,7 @@ export default function App() {
                   tick={{ fontSize: 11 }}
                   tickFormatter={(value) => value.toLocaleString("en-GB")}
                 />
-                <Tooltip />
-                <Legend />
+                <Tooltip content={<ForecastTooltip />} /> <Legend />
                 <Line
                   type="monotone"
                   dataKey="actual_gen"

@@ -1,10 +1,154 @@
 {
   "summary": {
-    "evaluated_hours": 719,
-    "mae_mw": 2067.42,
-    "rmse_mw": 2560.98
+    "evaluated_hours": 743,
+    "mae_mw": 2138.95,
+    "rmse_mw": 2636.8
   },
   "hourly": [
+    {
+      "startTime": "2026-01-01T00:00:00Z",
+      "actual_gen": 13814.5,
+      "forecast_gen": 19556,
+      "error_mw": -5741.5
+    },
+    {
+      "startTime": "2026-01-01T01:00:00Z",
+      "actual_gen": 14056.5,
+      "forecast_gen": 19707,
+      "error_mw": -5650.5
+    },
+    {
+      "startTime": "2026-01-01T02:00:00Z",
+      "actual_gen": 14380.0,
+      "forecast_gen": 19576,
+      "error_mw": -5196.0
+    },
+    {
+      "startTime": "2026-01-01T03:00:00Z",
+      "actual_gen": 15103.0,
+      "forecast_gen": 19398,
+      "error_mw": -4295.0
+    },
+    {
+      "startTime": "2026-01-01T04:00:00Z",
+      "actual_gen": 15349.5,
+      "forecast_gen": 19311,
+      "error_mw": -3961.5
+    },
+    {
+      "startTime": "2026-01-01T05:00:00Z",
+      "actual_gen": 15402.5,
+      "forecast_gen": 19451,
+      "error_mw": -4048.5
+    },
+    {
+      "startTime": "2026-01-01T06:00:00Z",
+      "actual_gen": 15404.0,
+      "forecast_gen": 19763,
+      "error_mw": -4359.0
+    },
+    {
+      "startTime": "2026-01-01T07:00:00Z",
+      "actual_gen": 15350.5,
+      "forecast_gen": 19794,
+      "error_mw": -4443.5
+    },
+    {
+      "startTime": "2026-01-01T08:00:00Z",
+      "actual_gen": 15598.5,
+      "forecast_gen": 19638,
+      "error_mw": -4039.5
+    },
+    {
+      "startTime": "2026-01-01T09:00:00Z",
+      "actual_gen": 15534.5,
+      "forecast_gen": 19449,
+      "error_mw": -3914.5
+    },
+    {
+      "startTime": "2026-01-01T10:00:00Z",
+      "actual_gen": 15924.0,
+      "forecast_gen": 19428,
+      "error_mw": -3504.0
+    },
+    {
+      "startTime": "2026-01-01T11:00:00Z",
+      "actual_gen": 16295.5,
+      "forecast_gen": 19616,
+      "error_mw": -3320.5
+    },
+    {
+      "startTime": "2026-01-01T12:00:00Z",
+      "actual_gen": 16330.0,
+      "forecast_gen": 19811,
+      "error_mw": -3481.0
+    },
+    {
+      "startTime": "2026-01-01T13:00:00Z",
+      "actual_gen": 16160.5,
+      "forecast_gen": 19959,
+      "error_mw": -3798.5
+    },
+    {
+      "startTime": "2026-01-01T14:00:00Z",
+      "actual_gen": 15926.5,
+      "forecast_gen": 20045,
+      "error_mw": -4118.5
+    },
+    {
+      "startTime": "2026-01-01T15:00:00Z",
+      "actual_gen": 15172.5,
+      "forecast_gen": 20051,
+      "error_mw": -4878.5
+    },
+    {
+      "startTime": "2026-01-01T16:00:00Z",
+      "actual_gen": 15194.0,
+      "forecast_gen": 20095,
+      "error_mw": -4901.0
+    },
+    {
+      "startTime": "2026-01-01T17:00:00Z",
+      "actual_gen": 15117.0,
+      "forecast_gen": 20081,
+      "error_mw": -4964.0
+    },
+    {
+      "startTime": "2026-01-01T18:00:00Z",
+      "actual_gen": 15380.0,
+      "forecast_gen": 19941,
+      "error_mw": -4561.0
+    },
+    {
+      "startTime": "2026-01-01T19:00:00Z",
+      "actual_gen": 15468.0,
+      "forecast_gen": 19744,
+      "error_mw": -4276.0
+    },
+    {
+      "startTime": "2026-01-01T20:00:00Z",
+      "actual_gen": 15243.0,
+      "forecast_gen": 19589,
+      "error_mw": -4346.0
+    },
+    {
+      "startTime": "2026-01-01T21:00:00Z",
+      "actual_gen": 15580.5,
+      "forecast_gen": 19412,
+      "error_mw": -3831.5
+    },
+    {
+      "startTime": "2026-01-01T22:00:00Z",
+      "actual_gen": 15584.0,
+      "forecast_gen": 19208,
+      "error_mw": -3624.0
+    },
+    {
+      "startTime": "2026-01-01T23:00:00Z",
+      "actual_gen": 15558.0,
+      "forecast_gen": 19073,
+      "error_mw": -3515.0
+    },
     {
       "startTime": "2026-01-02T00:00:00Z",
       "actual_gen": 15366.5,
@@ -4323,147 +4467,147 @@
   "period_performance": [
     {
       "settlementPeriod": 1,
-      "Avg_Actual_MW": 11716.766666666666,
-      "Avg_Forecast_MW": 13716.8,
-      "Period_MAE_MW": 2006.9
+      "Avg_Actual_MW": 11784.435483870968,
+      "Avg_Forecast_MW": 13905.161290322581,
+      "Period_MAE_MW": 2127.3709677419356
     },
     {
       "settlementPeriod": 3,
-      "Avg_Actual_MW": 11461.916666666666,
-      "Avg_Forecast_MW": 13623.8,
-      "Period_MAE_MW": 2161.883333333333
+      "Avg_Actual_MW": 11545.612903225807,
+      "Avg_Forecast_MW": 13820.032258064517,
+      "Period_MAE_MW": 2274.4193548387098
     },
     {
       "settlementPeriod": 5,
-      "Avg_Actual_MW": 11263.866666666667,
-      "Avg_Forecast_MW": 13520.533333333333,
-      "Period_MAE_MW": 2258.8333333333335
+      "Avg_Actual_MW": 11364.387096774193,
+      "Avg_Forecast_MW": 13715.870967741936,
+      "Period_MAE_MW": 2353.5806451612902
     },
     {
       "settlementPeriod": 7,
-      "Avg_Actual_MW": 11116.833333333334,
-      "Avg_Forecast_MW": 13433.733333333334,
-      "Period_MAE_MW": 2342.0333333333333
+      "Avg_Actual_MW": 11245.41935483871,
+      "Avg_Forecast_MW": 13626.129032258064,
+      "Period_MAE_MW": 2405.032258064516
     },
     {
       "settlementPeriod": 9,
-      "Avg_Actual_MW": 11019.933333333332,
-      "Avg_Forecast_MW": 13378.8,
-      "Period_MAE_MW": 2382.366666666667
+      "Avg_Actual_MW": 11159.59677419355,
+      "Avg_Forecast_MW": 13570.161290322581,
+      "Period_MAE_MW": 2433.3064516129034
     },
     {
       "settlementPeriod": 11,
-      "Avg_Actual_MW": 10879.916666666666,
-      "Avg_Forecast_MW": 13284.233333333334,
-      "Period_MAE_MW": 2482.616666666667
+      "Avg_Actual_MW": 11025.806451612903,
+      "Avg_Forecast_MW": 13483.161290322581,
+      "Period_MAE_MW": 2533.1290322580644
     },
     {
       "settlementPeriod": 13,
-      "Avg_Actual_MW": 10823.433333333332,
-      "Avg_Forecast_MW": 13169.7,
-      "Period_MAE_MW": 2416.5
+      "Avg_Actual_MW": 10971.193548387097,
+      "Avg_Forecast_MW": 13382.387096774193,
+      "Period_MAE_MW": 2479.1612903225805
     },
     {
       "settlementPeriod": 15,
-      "Avg_Actual_MW": 10936.083333333334,
-      "Avg_Forecast_MW": 13081.1,
-      "Period_MAE_MW": 2248.483333333333
+      "Avg_Actual_MW": 11078.483870967742,
+      "Avg_Forecast_MW": 13297.645161290322,
+      "Period_MAE_MW": 2319.2903225806454
     },
     {
       "settlementPeriod": 17,
-      "Avg_Actual_MW": 11118.983333333334,
-      "Avg_Forecast_MW": 12993.933333333332,
-      "Period_MAE_MW": 2080.4166666666665
+      "Avg_Actual_MW": 11263.483870967742,
+      "Avg_Forecast_MW": 13208.258064516129,
+      "Period_MAE_MW": 2143.6129032258063
     },
     {
       "settlementPeriod": 19,
-      "Avg_Actual_MW": 11154.683333333332,
-      "Avg_Forecast_MW": 12964.733333333334,
-      "Period_MAE_MW": 2131.516666666667
+      "Avg_Actual_MW": 11295.967741935483,
+      "Avg_Forecast_MW": 13173.90322580645,
+      "Period_MAE_MW": 2189.032258064516
     },
     {
       "settlementPeriod": 21,
-      "Avg_Actual_MW": 11241.25,
-      "Avg_Forecast_MW": 12932.966666666667,
-      "Period_MAE_MW": 2076.5833333333335
+      "Avg_Actual_MW": 11392.306451612903,
+      "Avg_Forecast_MW": 13142.483870967742,
+      "Period_MAE_MW": 2122.6290322580644
     },
     {
       "settlementPeriod": 23,
-      "Avg_Actual_MW": 11312.533333333333,
-      "Avg_Forecast_MW": 12838.733333333334,
-      "Period_MAE_MW": 2092.6666666666665
+      "Avg_Actual_MW": 11473.274193548386,
+      "Avg_Forecast_MW": 13057.354838709678,
+      "Period_MAE_MW": 2132.2741935483873
     },
     {
       "settlementPeriod": 25,
-      "Avg_Actual_MW": 11372.5,
-      "Avg_Forecast_MW": 12696.366666666667,
-      "Period_MAE_MW": 2034.9666666666667
+      "Avg_Actual_MW": 11532.41935483871,
+      "Avg_Forecast_MW": 12925.870967741936,
+      "Period_MAE_MW": 2081.6129032258063
     },
     {
       "settlementPeriod": 27,
-      "Avg_Actual_MW": 11338.083333333334,
-      "Avg_Forecast_MW": 12568.866666666667,
-      "Period_MAE_MW": 1968.9166666666667
+      "Avg_Actual_MW": 11493.645161290322,
+      "Avg_Forecast_MW": 12807.258064516129,
+      "Period_MAE_MW": 2027.9354838709678
     },
     {
       "settlementPeriod": 29,
-      "Avg_Actual_MW": 11329.583333333334,
-      "Avg_Forecast_MW": 12535.433333333332,
-      "Period_MAE_MW": 1906.2833333333333
+      "Avg_Actual_MW": 11477.870967741936,
+      "Avg_Forecast_MW": 12777.677419354839,
+      "Period_MAE_MW": 1977.6451612903227
     },
     {
       "settlementPeriod": 31,
-      "Avg_Actual_MW": 11497.0,
-      "Avg_Forecast_MW": 12618.766666666666,
-      "Period_MAE_MW": 1770.2
+      "Avg_Actual_MW": 11615.564516129032,
+      "Avg_Forecast_MW": 12858.516129032258,
+      "Period_MAE_MW": 1870.467741935484
     },
     {
       "settlementPeriod": 33,
-      "Avg_Actual_MW": 11617.816666666668,
-      "Avg_Forecast_MW": 12796.066666666668,
-      "Period_MAE_MW": 1708.8833333333334
+      "Avg_Actual_MW": 11733.177419354839,
+      "Avg_Forecast_MW": 13031.516129032258,
+      "Period_MAE_MW": 1811.8548387096773
     },
     {
       "settlementPeriod": 35,
-      "Avg_Actual_MW": 11808.516666666666,
-      "Avg_Forecast_MW": 13045.4,
-      "Period_MAE_MW": 1802.65
+      "Avg_Actual_MW": 11915.241935483871,
+      "Avg_Forecast_MW": 13272.354838709678,
+      "Period_MAE_MW": 1904.6290322580646
     },
     {
       "settlementPeriod": 37,
-      "Avg_Actual_MW": 12015.366666666667,
-      "Avg_Forecast_MW": 13293.6,
-      "Period_MAE_MW": 1918.4666666666667
+      "Avg_Actual_MW": 12123.90322580645,
+      "Avg_Forecast_MW": 13508.032258064517,
+      "Period_MAE_MW": 2003.7096774193549
     },
     {
       "settlementPeriod": 39,
-      "Avg_Actual_MW": 12124.233333333334,
-      "Avg_Forecast_MW": 13462.533333333333,
-      "Period_MAE_MW": 1973.0666666666666
+      "Avg_Actual_MW": 12232.09677419355,
+      "Avg_Forecast_MW": 13665.161290322581,
+      "Period_MAE_MW": 2047.3548387096773
     },
     {
       "settlementPeriod": 41,
-      "Avg_Actual_MW": 12124.316666666668,
-      "Avg_Forecast_MW": 13525.633333333333,
-      "Period_MAE_MW": 1943.05
+      "Avg_Actual_MW": 12224.91935483871,
+      "Avg_Forecast_MW": 13721.225806451614,
+      "Period_MAE_MW": 2020.5645161290322
     },
     {
       "settlementPeriod": 43,
-      "Avg_Actual_MW": 12024.316666666668,
-      "Avg_Forecast_MW": 13543.3,
-      "Period_MAE_MW": 1897.5833333333333
+      "Avg_Actual_MW": 12139.032258064517,
+      "Avg_Forecast_MW": 13732.612903225807,
+      "Period_MAE_MW": 1959.967741935484
     },
     {
       "settlementPeriod": 45,
-      "Avg_Actual_MW": 11920.183333333332,
-      "Avg_Forecast_MW": 13544.033333333333,
-      "Period_MAE_MW": 1947.55
+      "Avg_Actual_MW": 12038.370967741936,
+      "Avg_Forecast_MW": 13726.741935483871,
+      "Period_MAE_MW": 2001.6290322580646
     },
     {
       "settlementPeriod": 47,
-      "Avg_Actual_MW": 11779.603448275862,
-      "Avg_Forecast_MW": 13579.103448275862,
-      "Period_MAE_MW": 2065.5
+      "Avg_Actual_MW": 11905.55,
+      "Avg_Forecast_MW": 13762.233333333334,
+      "Period_MAE_MW": 2113.8166666666666
     }
   ]
 }
