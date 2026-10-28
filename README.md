@@ -1,162 +1,124 @@
 # UK Wind Forecast Accuracy Dashboard
 
-A full-stack analytics dashboard for evaluating the accuracy of day-ahead national wind generation forecasts in Great Britain using data from the **Elexon BMRS API**.
+A full-stack application that evaluates day-ahead wind generation forecasts against actual wind generation in Great Britain for January 2026. It presents forecast accuracy metrics and hourly forecast-versus-actual comparisons using data from the Elexon API.
 
-## Overview
+## Live Application
 
-Wind generation forecasts help energy suppliers estimate how much electricity will be available to meet demand. Forecast errors can affect procurement decisions and balancing requirements.
+- **Frontend:** https://abcde-zvkw.vercel.app/
+- **Backend API:** https://abcde-lemon-seven.vercel.app/api/forecast-accuracy
 
-This application compares forecast wind generation with actual generation for January 2026, calculates forecast error metrics, and visualizes performance over a selected date range.
+## Features
 
-### Key Features
+- Evaluates hourly wind generation forecasts against actual generation.
+- Displays Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE), measured in MW.
+- Visualizes forecast and actual generation over time.
+- Provides hourly forecast error data for further analysis.
+- Uses precomputed January 2026 results to avoid fetching and processing the full dataset on every request.
 
-- **Forecast vs. actual:** Interactive time-series chart comparing hourly wind generation.
-- **Performance metrics:** Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE).
-- **Date filtering:** Select a date range and recalculate metrics for the selected period.
-- **Hourly data table:** Inspect actual generation, forecast generation, and forecast error.
-- **Interactive tooltips:** View detailed values for individual observations.
-- **Precomputed results:** Cache evaluation results to reduce repeated API requests and improve response times.
-- **Docker support:** Run the frontend and backend in containers.
+## Technology Stack
 
-## Tech Stack
+- **Frontend:** React, TypeScript, Vite
+- **Backend:** Python, FastAPI
+- **Data processing:** Pandas
+- **Data source:** Elexon Insights API
+- **Deployment:** Vercel
+- **Containerization:** Docker and Docker Compose
 
-| Component   | Technologies                   |
-| ----------- | ------------------------------ |
-| Frontend    | React, Vite, Recharts          |
-| Backend     | Python, FastAPI, Pandas, NumPy |
-| Data source | Elexon BMRS API                |
-| Deployment  | Docker, Docker Compose         |
-
-## Data Sources
-
-The application uses two Elexon datasets:
-
-- **WINDFOR:** Day-ahead wind generation forecasts.
-- **FUELHH:** Half-hourly actual generation by fuel type, filtered to wind.
-
-The evaluation covers delivery hours in January 2026.
-
-## Methodology
-
-### 1. Forecast selection
-
-For each delivery hour, the application selects the latest available forecast published before the assumed decision cutoff of **06:00 GMT on the preceding day**.
-
-This cutoff is a modelling assumption used to evaluate forecast performance at a consistent point before delivery.
-
-### 2. Actual generation aggregation
-
-FUELHH actual generation is recorded at half-hourly intervals. The two half-hourly observations are averaged to obtain hourly actual generation. Hours without both expected observations are excluded.
-
-### 3. Forecast alignment
-
-Hourly forecasts are matched to hourly actual generation using their delivery start times. Only matching observations within January 2026 are evaluated.
-
-### 4. Error metrics
-
-Forecast error is defined as:
-
-`Error = Actual Generation − Forecast Generation`
-
-- **Positive error:** Actual generation exceeded the forecast.
-- **Negative error:** Actual generation was below the forecast.
-
-### Error Metrics
-
-**Mean Absolute Error (MAE)** measures the average magnitude of forecast errors:
+## Project Structure
 
 ```text
-MAE = (1/n) × Σ |Aᵢ − Fᵢ|
+.
+├── backend/
+│   ├── main.py                 # FastAPI application and API endpoint
+│   ├── pipeline.py             # Fetches, processes, and evaluates data
+│   ├── precompute.py           # Generates the January results cache
+│   ├── january_results.json    # Precomputed evaluation results
+│   ├── requirements.txt        # Python dependencies
+│   └── Dockerfile              # Backend container configuration
+│
+├── frontend/
+│   ├── src/                    # React application source code
+│   ├── public/                 # Static assets
+│   ├── package.json            # Frontend dependencies and scripts
+│   ├── package-lock.json       # Locked npm dependency versions
+│   ├── vite.config.ts          # Vite configuration
+│   ├── index.html              # Frontend HTML entry point
+│   └── Dockerfile              # Frontend container configuration
+│
+├── docker-compose.yml          # Runs the application containers
+└── README.md                   # Project documentation
 ```
 
-**Root Mean Squared Error (RMSE)** penalizes larger errors more heavily:
+*Note: The tree lists the main project files; retain only paths that match the actual repository.*
 
-```text
-RMSE = √[(1/n) × Σ (Aᵢ − Fᵢ)²]
-```
+## How to Run the Application
 
-Where:
+### Option 1: Run with Docker (Recommended)
 
-- `Aᵢ` = actual generation for hour `i`
-- `Fᵢ` = forecast generation for hour `i`
-- `n` = number of evaluated hours
+**Prerequisites:** Docker Desktop or Docker Engine with Docker Compose.
 
-Both metrics are expressed in **MW**. Lower values indicate better forecast accuracy.
+1. Clone the repository:
 
-## Architecture
+   ```bash
+   git clone <YOUR_PUBLIC_GITHUB_REPOSITORY_URL>
+   cd <YOUR_REPOSITORY_DIRECTORY>
+   ```
 
-```text
-Elexon BMRS API
-       |
-       v
-Python Data Pipeline
-       |
-       v
-Data Cleaning and Alignment
-       |
-       v
-Forecast Evaluation
-(MAE, RMSE, Hourly Errors)
-       |
-       v
-Precomputed JSON Results
-       |
-       v
-FastAPI Backend
-       |
-       v
-React Dashboard
-(Chart, Metrics, Filters, Table)
-```
+2. Build and start the application:
 
-## Getting Started
+   ```bash
+   docker compose up --build
+   ```
 
-### Prerequisites
+3. Open the application:
 
-- Python 3.12+
-- Node.js and npm
-- Docker and Docker Compose (for containerized execution)
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:8000/api/forecast-accuracy
 
-### Run with Docker
-
-From the project root, run:
-
-```bash
-docker compose up --build
-```
-
-Then open:
-
-- **Dashboard:** http://localhost:3000
-- **API endpoint:** http://localhost:8000/api/forecast-accuracy
-- **API documentation:** http://localhost:8000/docs
-
-To stop the containers:
+To stop the application, run:
 
 ```bash
 docker compose down
 ```
 
-### Run locally without Docker
+### Option 2: Run Locally Without Docker
 
-**1. Start the backend**
+**Prerequisites:** Python 3.12+, Node.js, and npm.
 
-```bash
-cd backend
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python precompute.py
-uvicorn main:app --reload --port 8000
-```
+#### Start the backend
 
-On Windows, activate the environment with:
+1. Open a terminal in the repository root.
+2. Create and activate a Python virtual environment:
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
+   ```bash
+   cd backend
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
 
-**2. Start the frontend in a separate terminal**
+   On Windows, activate it with:
+
+   ```powershell
+   .venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Start FastAPI:
+
+   ```bash
+   uvicorn main:app --reload --port 8000
+   ```
+
+   The API will be available at http://localhost:8000/api/forecast-accuracy.
+
+#### Start the frontend
+
+Open a second terminal:
 
 ```bash
 cd frontend
@@ -164,38 +126,79 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite, usually http://localhost:5173.
+Open the local URL printed by Vite, typically http://localhost:5173.
 
-## API
+If necessary, configure the frontend's `VITE_API_URL` environment variable to point to the backend:
+
+```text
+VITE_API_URL=http://localhost:8000
+```
+
+Restart the Vite development server after changing environment variables.
+
+## API Endpoint
 
 ### `GET /api/forecast-accuracy`
 
-Returns the precomputed evaluation results.
+Returns the January 2026 forecast evaluation results, including summary metrics, hourly observations, and performance breakdowns.
 
-The response contains:
+Example response structure:
 
-- `summary`: Number of evaluated hours, MAE, and RMSE.
-- `hourly`: Delivery timestamps, actual generation, forecast generation, and forecast error.
-- `period_performance`: Aggregated performance by settlement period.
+```json
+{
+  "summary": {
+    "evaluated_hours": 743,
+    "mae_mw": 2138.95,
+    "rmse_mw": 2636.8
+  },
+  "hourly": [],
+  "period_performance": []
+}
+```
 
-## Assumptions and Limitations
+The hourly array contains actual generation, forecast generation, and forecast error for each evaluated hour. The values above are an example of the current cached summary; the endpoint returns the complete dataset.
 
-- The decision cutoff of 06:00 GMT on the preceding day is an evaluation assumption.
-- Forecast records are selected based on publication time and delivery start time.
-- WINDFOR values are treated as hourly forecasts corresponding to their delivery start times.
-- Actual generation is calculated from complete pairs of half-hourly observations.
-- The evaluation covers January 2026 and should not be interpreted as a live forecasting service.
-- Results depend on the availability and consistency of the underlying Elexon data.
+## Data Processing and Methodology
 
-## Future Improvements
+1. Retrieve day-ahead wind generation forecasts from Elexon's `WINDFOR` dataset.
+2. Retrieve actual half-hourly wind generation from the `FUELHH` dataset.
+3. Aggregate actual generation into hourly averages, retaining hours with exactly two half-hourly observations.
+4. For each delivery hour, select the latest forecast published on or before the assumed decision cutoff.
+5. Match forecasts with actual generation by delivery timestamp and evaluate January 2026.
 
-- Compare forecast accuracy across different forecast publication cutoffs.
-- Expand evaluation to additional months and compare forecast performance over time.
+The forecast error is defined as:
 
-## AI Tool Disclosure
+```text
+Error = Actual Generation - Forecast Generation
+```
 
-AI tools were used to assist with development, debugging, and documentation.
+- Positive error: generation was underforecast.
+- Negative error: generation was overforecast.
 
-## Data Attribution
+The evaluation metrics are:
 
-Data provided by [Elexon BMRS](https://bmrs.elexon.co.uk/).
+```text
+MAE  = Mean of absolute forecast errors
+RMSE = Square root of the mean squared forecast errors
+```
+
+Both metrics are expressed in MW. MAE measures the average absolute error, while RMSE penalizes larger errors more heavily.
+
+### Decision Cutoff Assumption
+
+The application uses **06:00 GMT on the day before delivery** as an assumed forecast decision cutoff. This is a modelling assumption for the analysis, not a claim that Elexon or the electricity market specifies this as the official deadline.
+
+## Data Source
+
+Forecast and generation data are sourced from the [Elexon Insights API](https://www.elexon.co.uk/data/).
+
+## Limitations
+
+- The analysis covers January 2026 only.
+- Evaluation is limited to delivery hours with matching forecasts and valid hourly actual generation.
+- Results depend on the selected decision-cutoff assumption and the availability and publication timestamps of source data.
+- The deployed API serves precomputed results; refreshing the page does not trigger a complete data refresh.
+
+## License
+
+Add the license applicable to this repository if one has been selected.
