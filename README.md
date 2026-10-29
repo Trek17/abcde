@@ -49,7 +49,7 @@ A full-stack application that evaluates day-ahead wind generation forecasts agai
 └── README.md                   # Project documentation
 ```
 
-*Note: The tree lists the main project files; retain only paths that match the actual repository.*
+_Note: The tree lists the main project files; retain only paths that match the actual repository._
 
 ## How to Run the Application
 
@@ -199,6 +199,6 @@ Forecast and generation data are sourced from the [Elexon Insights API](https://
 - Results depend on the selected decision-cutoff assumption and the availability and publication timestamps of source data.
 - The deployed API serves precomputed results; refreshing the page does not trigger a complete data refresh.
 
-## License
+## AI Tool Disclosure
 
-Add the license applicable to this repository if one has been selected.
+AI tools were used to assist with development, debugging, and documentation.
