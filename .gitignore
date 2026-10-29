@@ -2,6 +2,7 @@
 .dockerignore
 __pycache__/
 *.py[cod]
+data_pipline_test.py
 
 # Node
 node_modules/

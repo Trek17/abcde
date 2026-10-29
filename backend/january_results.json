@@ -1,8 +1,8 @@
 {
   "summary": {
-    "evaluated_hours": 743,
-    "mae_mw": 2138.95,
-    "rmse_mw": 2636.8
+    "evaluated_hours": 744,
+    "mae_mw": 2139.42,
+    "rmse_mw": 2636.61
   },
   "hourly": [
     {
@@ -4462,6 +4462,12 @@
       "actual_gen": 9397.5,
       "forecast_gen": 11693,
       "error_mw": -2295.5
+    },
+    {
+      "startTime": "2026-01-31T23:00:00Z",
+      "actual_gen": 8989.5,
+      "forecast_gen": 11475,
+      "error_mw": -2485.5
     }
   ],
   "period_performance": [
@@ -4605,9 +4611,9 @@
     },
     {
       "settlementPeriod": 47,
-      "Avg_Actual_MW": 11905.55,
-      "Avg_Forecast_MW": 13762.233333333334,
-      "Period_MAE_MW": 2113.8166666666666
+      "Avg_Actual_MW": 11811.483870967742,
+      "Avg_Forecast_MW": 13688.451612903225,
+      "Period_MAE_MW": 2125.8064516129034
     }
   ]
 }
